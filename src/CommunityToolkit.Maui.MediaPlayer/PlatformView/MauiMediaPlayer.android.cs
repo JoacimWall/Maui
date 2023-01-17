@@ -21,7 +21,7 @@ public class MauiMediaPlayer : CoordinatorLayout
 	public MauiMediaPlayer(Context context, StyledPlayerView playerView) : base(context)
 	{
 		this.playerView = playerView;
-
+		
 		// Create a RelativeLayout for sizing the video
 		RelativeLayout relativeLayout = new(context)
 		{

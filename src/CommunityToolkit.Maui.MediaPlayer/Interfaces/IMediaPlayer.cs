@@ -95,6 +95,13 @@ public interface IMediaPlayer : IView
 	bool ShouldShowPlaybackControls { get; set; }
 
 	/// <summary>
+	/// Gets or sets whether the player should show the ShowSubtitle button in playback controls..
+	/// This is only for Android. 
+	/// </summary>
+	
+	bool ShouldShowSubtitleButton { get; set; }
+
+	/// <summary>
 	/// Gets or sets the source of the media to play.
 	/// </summary>
 	MediaSource? Source { get; set; }
@@ -133,4 +140,6 @@ public interface IMediaPlayer : IView
 	/// </summary>
 	/// <remarks>A value of 1 means full volume, 0 is silence.</remarks>
 	double Volume { get; set; }
+
+	
 }

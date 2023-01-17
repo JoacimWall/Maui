@@ -245,6 +245,11 @@ public partial class MediaManager : IDisposable
 		}
 	}
 
+	protected virtual partial void PlatformUpdateShouldShowSubtitleButton()
+	{
+		//Not implemenet
+	}
+
 	protected virtual partial void PlatformUpdatePosition()
 	{
 		if (mediaPlayer is null || player is null)

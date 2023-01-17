@@ -116,6 +116,11 @@ partial class MediaManager : IDisposable
 			mediaPlayer.ShouldShowPlaybackControls;
 	}
 
+	protected virtual partial void PlatformUpdateShouldShowSubtitleButton()
+	{
+		//Not implemenet
+	}
+
 	protected virtual partial void PlatformUpdatePosition()
 	{
 		if (mediaPlayer is not null && player is not null

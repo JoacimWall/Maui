@@ -255,6 +255,11 @@ public partial class MediaManager : IDisposable
 			mediaPlayer.ShouldShowPlaybackControls;
 	}
 
+	protected virtual partial void PlatformUpdateShouldShowSubtitleButton()
+	{
+		//Handled by to iOS
+	}
+
 	protected virtual partial void PlatformUpdatePosition()
 	{
 		if (player is null)

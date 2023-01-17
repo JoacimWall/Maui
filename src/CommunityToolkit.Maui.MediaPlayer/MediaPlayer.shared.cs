@@ -59,6 +59,13 @@ public class MediaPlayer : View, IMediaPlayer
 		  BindableProperty.Create(nameof(ShouldShowPlaybackControls), typeof(bool), typeof(MediaPlayer), true);
 
 	/// <summary>
+	/// Backing store for the <see cref="ShouldShowSubtitleButton"/> property.
+	/// </summary>
+	public static readonly BindableProperty ShowSubtitleButtonProperty =
+		  BindableProperty.Create(nameof(ShouldShowSubtitleButton), typeof(bool), typeof(MediaPlayer), false);
+
+
+	/// <summary>
 	/// Backing store for the <see cref="Source"/> property.
 	/// </summary>
 	public static readonly BindableProperty SourceProperty =
@@ -221,6 +228,16 @@ public class MediaPlayer : View, IMediaPlayer
 	}
 
 	/// <summary>
+	/// Gets or sets whether the player should show subtitlebutton on android platform playback controls.
+	/// This is a bindable property.
+	/// </summary>
+	public bool ShouldShowSubtitleButton
+	{
+		get => (bool)GetValue(ShowSubtitleButtonProperty);
+		set => SetValue(ShowSubtitleButtonProperty, value);
+	}
+
+	/// <summary>
 	/// Gets or sets the source of the media to play.
 	/// This is a bindable property.
 	/// </summary>
@@ -304,6 +321,7 @@ public class MediaPlayer : View, IMediaPlayer
 		get => (TimeSpan)GetValue(DurationProperty);
 		set => SetValue(durationPropertyKey, value);
 	}
+	
 
 	/// <inheritdoc cref="IMediaPlayer.Pause"/>
 	public void Pause()

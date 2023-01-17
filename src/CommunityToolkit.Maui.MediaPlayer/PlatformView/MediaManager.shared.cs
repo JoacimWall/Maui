@@ -121,6 +121,14 @@ public partial class MediaManager
 	}
 
 	/// <summary>
+	/// Update whether or not to show the subtitle button on Android playback controls.
+	/// </summary>
+	public void UpdateShouldShowSubtitleButton()
+	{
+		PlatformUpdateShouldShowSubtitleButton();
+	}
+
+	/// <summary>
 	/// Update the media player status.
 	/// </summary>
 	public void UpdateStatus()
@@ -184,6 +192,11 @@ public partial class MediaManager
 	protected virtual partial void PlatformUpdateShouldShowPlaybackControls();
 
 	/// <summary>
+	/// Invokes the platform functionality to show or hide the platform playback controls.
+	/// </summary>
+	protected virtual partial void PlatformUpdateShouldShowSubtitleButton();
+	
+	/// <summary>
 	/// Invokes the platform functionality to update the media playback position.
 	/// </summary>
 	protected virtual partial void PlatformUpdatePosition();
@@ -204,6 +217,7 @@ partial class MediaManager
 	protected virtual partial void PlatformUpdateSource() { }
 	protected virtual partial void PlatformUpdateSpeed() { }
 	protected virtual partial void PlatformUpdateShouldShowPlaybackControls() { }
+	protected virtual partial void PlatformUpdateShouldShowSubtitleButton() { }
 	protected virtual partial void PlatformUpdatePosition() { }
 	protected virtual partial void PlatformUpdateVolume() { }
 	protected virtual partial void PlatformUpdateShouldKeepScreenOn() { }

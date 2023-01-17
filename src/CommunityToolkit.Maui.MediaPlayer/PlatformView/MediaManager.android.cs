@@ -25,8 +25,10 @@ public partial class MediaManager : Java.Lang.Object, IPlayer.IListener
 		ArgumentNullException.ThrowIfNull(mauiContext.Context);
 		player = new IExoPlayer.Builder(mauiContext.Context).Build() ?? throw new NullReferenceException();
 		player.AddListener(this);
+		
 		playerView = new StyledPlayerView(mauiContext.Context)
 		{
+			
 			Player = player,
 			UseController = false,
 			ControllerAutoShow = false,
@@ -340,7 +342,15 @@ public partial class MediaManager : Java.Lang.Object, IPlayer.IListener
 
 		playerView.UseController = mediaPlayer.ShouldShowPlaybackControls;
 	}
+	protected virtual partial void PlatformUpdateShouldShowSubtitleButton()
+	{
+		if (mediaPlayer is null || playerView is null)
+		{
+			return;
+		}
 
+		playerView.SetShowSubtitleButton(mediaPlayer.ShouldShowSubtitleButton);
+	}
 	protected virtual partial void PlatformUpdatePosition()
 	{
 		if (mediaPlayer is null || player is null)
@@ -383,7 +393,7 @@ public partial class MediaManager : Java.Lang.Object, IPlayer.IListener
 
 		player.RepeatMode = mediaPlayer.ShouldLoopPlayback ? IPlayer.RepeatModeOne : IPlayer.RepeatModeOff;
 	}
-
+	
 	#region IPlayer.IListener implementation method stubs
 	public void OnAudioAttributesChanged(AudioAttributes? audioAttributes) { }
 	public void OnAudioSessionIdChanged(int audioSessionId) { }

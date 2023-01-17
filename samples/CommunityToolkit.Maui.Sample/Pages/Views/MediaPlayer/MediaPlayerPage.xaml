@@ -37,6 +37,7 @@
                 MediaOpened="OnMediaOpened"
                 PositionChanged="OnPositionChanged"
                 StateChanged="OnStateChanged"
+                
                 SeekCompleted="OnSeekCompleted"/>
 
             <HorizontalStackLayout Grid.Row="1" Padding="0,0,0,15">
@@ -126,6 +127,16 @@
                     <Label
                         VerticalOptions="Center"
                         Text="Show playback controls" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="0,0,0,10">
+                    <Switch
+                        Margin="0,0,5,0"
+                        ThumbColor="White"
+                        OnColor="LimeGreen"
+                        IsToggled="{Binding Source={x:Reference mediaPlayer}, Path=ShouldShowSubtitleButton}" />
+                    <Label
+                        VerticalOptions="Center"
+                        Text="Show subtitle button on android" />
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Padding="0,0,0,10">
                     <Switch

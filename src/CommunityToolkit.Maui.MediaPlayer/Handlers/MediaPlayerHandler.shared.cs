@@ -20,7 +20,10 @@ public partial class MediaPlayerHandler
 		[nameof(Core.IMediaPlayer.Volume)] = MapVolume,
 		[nameof(Core.IMediaPlayer.ShouldKeepScreenOn)] = MapShouldKeepScreenOn,
 #if ANDROID || WINDOWS || TIZEN
-		[nameof(Core.IMediaPlayer.ShouldLoopPlayback)] = ShouldLoopPlayback
+		[nameof(Core.IMediaPlayer.ShouldLoopPlayback)] = ShouldLoopPlayback,
+#endif
+#if ANDROID
+		[nameof(Core.IMediaPlayer.ShouldShowSubtitleButton)] = MapShouldShowSubtitleButton
 #endif
 	};
 
@@ -66,6 +69,18 @@ public partial class MediaPlayerHandler
 	{
 		handler.mediaManager?.UpdateShouldShowPlaybackControls();
 	}
+	
+	/// <summary>
+	/// Maps the <see cref="Core.IMediaPlayer.ShouldShowSubtitleButton"/> property between the abstract
+	/// <see cref="Views.MediaPlayer"/> and platform counterpart.
+	/// </summary>
+	/// <param name="handler">The associated handler.</param>
+	/// <param name="MediaPlayer">The associated <see cref="Views.MediaPlayer"/> instance.</param>
+	public static void MapShouldShowSubtitleButton(MediaPlayerHandler handler, Views.MediaPlayer MediaPlayer)
+	{
+		handler.mediaManager?.UpdateShouldShowSubtitleButton();
+	}
+
 
 	/// <summary>
 	/// Maps the <see cref="Core.IMediaPlayer.Source"/> property between the abstract
