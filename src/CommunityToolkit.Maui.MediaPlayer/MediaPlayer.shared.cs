@@ -18,16 +18,11 @@ public class MediaPlayer : View, IMediaPlayer
 	  BindableProperty.CreateReadOnly(nameof(Duration), typeof(TimeSpan), typeof(MediaPlayer), TimeSpan.Zero);
 
 	/// <summary>
-	/// Backing store for the <see cref="ShouldAutoPlay"/> property.
-	/// </summary>
-	public static readonly BindableProperty AutoPlayProperty =
-		BindableProperty.Create(nameof(ShouldAutoPlay), typeof(bool), typeof(MediaPlayer), false);
-
-	/// <summary>
 	/// Backing store for the <see cref="CurrentState"/> property.
 	/// </summary>
 	public static readonly BindableProperty CurrentStateProperty =
-		  BindableProperty.Create(nameof(CurrentState), typeof(MediaPlayerState), typeof(MediaPlayer), MediaPlayerState.None, propertyChanged: OnCurrentStatePropertyChanged);
+		  BindableProperty.Create(nameof(CurrentState), typeof(MediaPlayerState), typeof(MediaPlayer),
+			  MediaPlayerState.None, propertyChanged: OnCurrentStatePropertyChanged);
 
 	/// <summary>
 	/// Backing store for the <see cref="Duration"/> property.
@@ -35,15 +30,21 @@ public class MediaPlayer : View, IMediaPlayer
 	public static readonly BindableProperty DurationProperty = durationPropertyKey.BindableProperty;
 
 	/// <summary>
+	/// Backing store for the <see cref="ShouldAutoPlay"/> property.
+	/// </summary>
+	public static readonly BindableProperty ShouldAutoPlayProperty =
+		BindableProperty.Create(nameof(ShouldAutoPlay), typeof(bool), typeof(MediaPlayer), false);
+
+	/// <summary>
 	/// Backing store for the <see cref="ShouldLoopPlayback"/> property.
 	/// </summary>
-	public static readonly BindableProperty IsLoopingProperty =
+	public static readonly BindableProperty ShouldLoopPlaybackProperty =
 		  BindableProperty.Create(nameof(ShouldLoopPlayback), typeof(bool), typeof(MediaPlayer), false);
 
 	/// <summary>
 	/// Backing store for the <see cref="ShouldKeepScreenOn"/> property.
 	/// </summary>
-	public static readonly BindableProperty KeepScreenOnProperty =
+	public static readonly BindableProperty ShouldKeepScreenOnProperty =
 		  BindableProperty.Create(nameof(ShouldKeepScreenOn), typeof(bool), typeof(MediaPlayer), false);
 
 	/// <summary>
@@ -81,13 +82,13 @@ public class MediaPlayer : View, IMediaPlayer
 	/// <summary>
 	/// Backing store for the <see cref="MediaHeight"/> property.
 	/// </summary>
-	public static readonly BindableProperty VideoHeightProperty =
+	public static readonly BindableProperty MediaHeightProperty =
 		BindableProperty.Create(nameof(MediaHeight), typeof(int), typeof(MediaPlayer));
 
 	/// <summary>
 	/// Backing store for the <see cref="MediaWidth"/> property.
 	/// </summary>
-	public static readonly BindableProperty VideoWidthProperty =
+	public static readonly BindableProperty MediaWidthProperty =
 		BindableProperty.Create(nameof(MediaWidth), typeof(int), typeof(MediaPlayer));
 
 	/// <summary>
@@ -192,8 +193,8 @@ public class MediaPlayer : View, IMediaPlayer
 	/// </summary>
 	public bool ShouldAutoPlay
 	{
-		get => (bool)GetValue(AutoPlayProperty);
-		set => SetValue(AutoPlayProperty, value);
+		get => (bool)GetValue(ShouldAutoPlayProperty);
+		set => SetValue(ShouldAutoPlayProperty, value);
 	}
 
 	/// <summary>
@@ -202,8 +203,8 @@ public class MediaPlayer : View, IMediaPlayer
 	/// </summary>
 	public bool ShouldLoopPlayback
 	{
-		get => (bool)GetValue(IsLoopingProperty);
-		set => SetValue(IsLoopingProperty, value);
+		get => (bool)GetValue(ShouldLoopPlaybackProperty);
+		set => SetValue(ShouldLoopPlaybackProperty, value);
 	}
 
 	/// <summary>
@@ -213,8 +214,8 @@ public class MediaPlayer : View, IMediaPlayer
 	/// <remarks>If media is paused, stopped or has completed playing, the display will turn off.</remarks>
 	public bool ShouldKeepScreenOn
 	{
-		get => (bool)GetValue(KeepScreenOnProperty);
-		set => SetValue(KeepScreenOnProperty, value);
+		get => (bool)GetValue(ShouldKeepScreenOnProperty);
+		set => SetValue(ShouldKeepScreenOnProperty, value);
 	}
 
 	/// <summary>
@@ -277,8 +278,8 @@ public class MediaPlayer : View, IMediaPlayer
 	/// <remarks>Not reported for non-visual media.</remarks>
 	public int MediaHeight
 	{
-		get => (int)GetValue(VideoHeightProperty);
-		internal set => SetValue(VideoHeightProperty, value);
+		get => (int)GetValue(MediaHeightProperty);
+		internal set => SetValue(MediaHeightProperty, value);
 	}
 
 	/// <summary>
@@ -288,8 +289,8 @@ public class MediaPlayer : View, IMediaPlayer
 	/// <remarks>Not reported for non-visual media.</remarks>
 	public int MediaWidth
 	{
-		get => (int)GetValue(VideoWidthProperty);
-		internal set => SetValue(VideoWidthProperty, value);
+		get => (int)GetValue(MediaWidthProperty);
+		internal set => SetValue(MediaWidthProperty, value);
 	}
 
 	/// <summary>
@@ -483,7 +484,7 @@ public class MediaPlayer : View, IMediaPlayer
 
 	void IMediaPlayer.SeekCompleted()
 	{
-		OnSeekCompeted();
+		OnSeekCompleted();
 	}
 
 	void IMediaPlayer.CurrentStateChanged(MediaPlayerState newState) => CurrentState = newState;
@@ -500,7 +501,7 @@ public class MediaPlayer : View, IMediaPlayer
 
 	void OnStopRequested() => eventManager.HandleEvent(this, EventArgs.Empty, nameof(StopRequested));
 
-	void OnSeekCompeted() => eventManager.HandleEvent(this, EventArgs.Empty, nameof(SeekCompleted));
+	void OnSeekCompleted() => eventManager.HandleEvent(this, EventArgs.Empty, nameof(SeekCompleted));
 
 	void OnPositionRequested() => eventManager.HandleEvent(this, EventArgs.Empty, nameof(PositionRequested));
 
