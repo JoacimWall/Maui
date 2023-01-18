@@ -34,7 +34,7 @@ public partial class MediaManager : Java.Lang.Object, IPlayer.IListener
 			ControllerAutoShow = false,
 			LayoutParameters = new RelativeLayout.LayoutParams(Android.Views.ViewGroup.LayoutParams.MatchParent, Android.Views.ViewGroup.LayoutParams.MatchParent),
 		};
-
+		//playerView.SetFullscreenButtonClickListener(new StyledPlayerView.IFullscreenButtonClickListener);
 		return (player, playerView);
 	}
 
@@ -349,7 +349,7 @@ public partial class MediaManager : Java.Lang.Object, IPlayer.IListener
 			return;
 		}
 
-		playerView.SetShowSubtitleButton(mediaPlayer.ShouldShowSubtitleButton);
+		//playerView.SetShowSubtitleButton(mediaPlayer.ShouldShowSubtitleButton);
 	}
 	protected virtual partial void PlatformUpdatePosition()
 	{
