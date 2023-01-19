@@ -12,7 +12,7 @@ namespace CommunityToolkit.Maui.MediaPlayer.PlatformView;
 public class MauiMediaPlayer : CoordinatorLayout
 {
 	readonly StyledPlayerView playerView;
-
+	
 	/// <summary>
 	/// Initializes a new instance of the <see cref="MauiMediaPlayer"/> class.
 	/// </summary>
@@ -21,7 +21,8 @@ public class MauiMediaPlayer : CoordinatorLayout
 	public MauiMediaPlayer(Context context, StyledPlayerView playerView) : base(context)
 	{
 		this.playerView = playerView;
-		
+		this.playerView.FullscreenButtonClick += PlayerView_FullscreenButtonClick;
+
 		// Create a RelativeLayout for sizing the video
 		RelativeLayout relativeLayout = new(context)
 		{
@@ -33,6 +34,16 @@ public class MauiMediaPlayer : CoordinatorLayout
 
 		relativeLayout.AddView(playerView);
 		AddView(relativeLayout);
+	}
+
+	public void PlayerView_FullscreenButtonClick(object? sender, StyledPlayerView.FullscreenButtonClickEventArgs e)
+	{
+		
+		//UpdateViewLayout(relativeLayout.FindViewById<StyledPlayerView>(this.playerView.Id), LayoutParameters = new CoordinatorLayout.LayoutParams(LayoutParams.FillParent, LayoutParams.FillParent)
+		//{
+		//	Gravity = (int)GravityFlags.Fill
+		//});
+		
 	}
 
 	/// <summary>
